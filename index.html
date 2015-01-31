@@ -1,0 +1,107 @@
+<!doctype html>
+<html class="no-js" lang="en" ng-app="timer">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Countdown Timer</title>
+    <link rel="stylesheet" href="css/foundation.css"/>
+    <link rel="stylesheet" href="css/foundation-custom.css"/>
+    <script src="js/vendor/modernizr.js"></script>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/timer.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+</head>
+<body id="body" ng-controller="CountDownCtrl">
+
+<audio id="bell-sound" src="media/Ship_Bell-Mike_Koenig-1911209136.mp3" preload="auto"></audio>
+
+
+<div class="contain-to-grid sticky" style="margin-bottom: 50px;">
+    <nav class="top-bar" data-topbar data-options="sticky_on: large">
+        <ul class="title-area">
+            <li class="toggle-topbar menu-icon"><a href=""><span>Menu</span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+
+            <!-- Right Nav Section -->
+            <ul class="right show-for-medium-up title-area">
+                <li class="name">
+                    <h1><a href="http://www.opencampus.sh"><img src="img/open-campus_tiny.png"/></a></h1>
+                </li>
+            </ul>
+
+            <!-- Left Nav Section -->
+            <ul class="left">
+                <li class="name">
+                    <h1>Controls:</h1>
+                </li>
+                <li>
+                    <a ng-click="switchMode()"><img width="30px" ng-src="{{modeImages[mode]}}"/></a>
+                </li>
+                <li>
+                    <a ng-click="toggleSound()"><img width="30px" id="icon_bell" ng-src="{{bellImage}}"/></a>
+                </li>
+                <li ng-show="state === -1" >
+                    <a ng-click="toggleCountdown()"><img width="30px" src="img/icon_start.png"/></a>
+                </li>
+                <li ng-hide="state === -1">
+                    <a ng-click="clear()"><img width="40px" src="img/icon_stop.png"/></a>
+                </li>
+            </ul>
+        </section>
+    </nav>
+</div>
+
+
+<div class="row" style="height: 50px;">
+    <div class="large-12 columns">
+          <span style="align:center;" ng-show="state === -1">
+              <a ng-click="incrementCountdown(0)" style="margin-left: 20px; margin-right: 50px;">
+                  <img width="50px" src="img/icon_arrow-up.png"/>
+              </a>
+              <a ng-click="incrementCountdown(1)" style="margin-right: 80px;">
+                  <img width="50px" src="img/icon_arrow-up.png"/>
+              </a>
+              <a ng-click="incrementCountdown(2)" style="margin-right: 50px;">
+                  <img width="50px" src="img/icon_arrow-up.png"/>
+              </a>
+              <a ng-click="incrementCountdown(3)">
+                  <img width="50px" src="img/icon_arrow-up.png"/>
+              </a>
+          </span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <h1 ng-click="toggleCountdown()">{{display}}</h1>
+    </div>
+</div>
+
+<div class="row" style="height: 80px;">
+    <div class="large-12 columns">
+           <span ng-show="state === -1">
+              <a ng-click="decrementCountdown(0)" style="margin-left: 20px; margin-right: 50px;">
+                  <img width="50px" src="img/icon_arrow-down.png"/>
+              </a>
+              <a ng-click="decrementCountdown(1)" style="margin-right: 80px;">
+                  <img width="50px" src="img/icon_arrow-down.png"/>
+              </a>
+              <a ng-click="decrementCountdown(2)" style="margin-right: 50px;">
+                  <img width="50px" src="img/icon_arrow-down.png"/>
+              </a>
+              <a ng-click="decrementCountdown(3)">
+                  <img width="50px" src="img/icon_arrow-down.png"/>
+              </a>
+          </span>
+    </div>
+</div>
+<p></p>
+</body>
+</html>
